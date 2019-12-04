@@ -2,6 +2,7 @@ import React from 'react';
 import Panel from './Panel';
 import GameBoard from './GameBoard';
 import WinnersTable from './WinnersTable';
+import {formatDate} from './HandleFormatDate';
 
 class Game extends React.Component {
   constructor(props) {
@@ -38,27 +39,6 @@ class Game extends React.Component {
     });
   }
 
-  formatDate = (date) => {
-    const monthNames = [
-      "January", "February", "March",
-      "April", "May", "June", "July",
-      "August", "September", "October",
-      "November", "December"
-    ];
-  
-    let hour = date.getHours();
-    let minutes = date.getMinutes();
-    let day = date.getDate();
-    let monthIndex = date.getMonth();
-    let year = date.getFullYear();
-  
-    if (minutes < 10) {
-      minutes = '0' + minutes;
-    }
-  
-    return `${hour}:${minutes} ${day} ${monthNames[monthIndex]} ${year}`;
-  }
-
   sendWinnerToServer = (userName) => {
     return fetch('https://starnavi-frontend-test-task.herokuapp.com/winners', {
       method: 'POST',
@@ -68,7 +48,7 @@ class Game extends React.Component {
       },
       body: JSON.stringify({
         winner: userName,
-        date: this.formatDate(new Date()),
+        date: formatDate(new Date()),
       })
     }).then((response) => response.json())
       .then((responseJson) => {
@@ -214,7 +194,7 @@ class Game extends React.Component {
             isPlaying={this.state.isPlaying}
             startPlaying={this.startPlaying}
             getTimerId={this.getTimerId}
-            // squares={this.state.squares}
+            squares={this.state.squares}
           />
 
           <span className="winner">

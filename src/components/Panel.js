@@ -10,6 +10,7 @@ function Panel(props) {
     userName,
     startPlaying,
     getTimerId,
+    squares
   } = props;
 
   const gameStart = (event) => {
@@ -28,6 +29,10 @@ function Panel(props) {
       input.disabled = 'true';
       winnerLabel.style.opacity = 0;
       resetBtn.style.display = 'none';
+
+      for (let square of squares) {
+        square.style.backgroundColor = '#f3f3f3';
+      }
     
       let timerId = setInterval(game, settings.delay);
       getTimerId(timerId);

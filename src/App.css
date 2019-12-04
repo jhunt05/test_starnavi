@@ -132,12 +132,11 @@ ol, ul {
 }
 
 .leadersTable {
-  margin-top: 150px;
-  width: 35%;
+  margin-top: 30px;
+  width: 100%;
 }
 
 .leadersTable h2 {
-  text-align: center;
   font-size: 25px;
   color: #ebebeb;
   font-weight: bold;
@@ -156,6 +155,20 @@ ol, ul {
   display: none;
 }
 
+.rules {
+  margin-top: 70px;
+}
+
+.ui.card {
+  padding: 10px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-top: 80px;
+}
+
 @media screen and (max-width: 585px) {
   .container {
     flex-direction: column;
@@ -169,11 +182,11 @@ ol, ul {
   }
 
   .game {
-    max-width: 500px;
+    max-width: 370px;
   }
 
   .gameBoard {
-    max-width: 500px;
+    max-width: 370px;
   }
 
   .input {
@@ -196,12 +209,16 @@ ol, ul {
   }
 
   .boardRow {
-    height: 20px;
+    height: 25px;
   }
 
   .boardBtn {
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
+  }
+
+  .wrapper {
+    margin-top: 0;
   }
 }
 
@@ -211,8 +228,16 @@ ol, ul {
     align-items: center;
   }
 
+  .wrapper {
+    align-items: center;
+  }
+
   .leadersTable {
-    width: 55%;
+    width: 100%;
     margin-top: 40px;
+  }
+
+  .leadersTable h2 {
+    text-align: center;
   }
 }
