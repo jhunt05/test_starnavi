@@ -38,6 +38,27 @@ class Game extends React.Component {
     });
   }
 
+  formatDate = (date) => {
+    const monthNames = [
+      "January", "February", "March",
+      "April", "May", "June", "July",
+      "August", "September", "October",
+      "November", "December"
+    ];
+  
+    let hour = date.getHours();
+    let minutes = date.getMinutes();
+    let day = date.getDate();
+    let monthIndex = date.getMonth();
+    let year = date.getFullYear();
+  
+    if (minutes < 10) {
+      minutes = '0' + minutes;
+    }
+  
+    return `${hour}:${minutes} ${day} ${monthNames[monthIndex]} ${year}`;
+  }
+
   sendWinnerToServer = (userName) => {
     return fetch('https://starnavi-frontend-test-task.herokuapp.com/winners', {
       method: 'POST',
@@ -47,7 +68,7 @@ class Game extends React.Component {
       },
       body: JSON.stringify({
         winner: userName,
-        date: new Date().toUTCString(),
+        date: this.formatDate(new Date()),
       })
     }).then((response) => response.json())
       .then((responseJson) => {
@@ -78,19 +99,20 @@ class Game extends React.Component {
       }, settings.delay);
     }
 
-    const resetGame = (buttons) => {
+    const resetGame = () => {
       const playBtn = document.querySelector('.ui.button');
       const select = document.querySelector('.select');
       const input = document.querySelector('.input');
       const winnerLabel = document.querySelector('.winner');
+      const resetBtn = document.querySelector('.ui.reset');
 
       winnerLabel.style.opacity = 1;
+      resetBtn.style.display = 'block';
       clearInterval(this.state.timerId);
       playBtn.innerHTML = 'Play again';
       playBtn.disabled = false;
       select.disabled = false;
       input.disabled = false;
-      input.value = '';
     }
     
     const chooseWinner = (buttons) => {
@@ -113,7 +135,7 @@ class Game extends React.Component {
           winner: userName,
         })
         this.sendWinnerToServer(userName);
-        resetGame(buttons);
+        resetGame();
       } else if (pcScore.length >= buttons.length / 2) {
         this.props.addWinner('Computer');
         this.setState({
@@ -121,7 +143,7 @@ class Game extends React.Component {
           winner: 'Computer',
         })
         this.sendWinnerToServer('Computer');
-        resetGame(buttons);
+        resetGame();
       } else {
         return;
       }
@@ -145,6 +167,15 @@ class Game extends React.Component {
     this.setState({
       squares: btn,
     })
+  }
+
+  resetField = () => {
+    const { squares } = this.state;
+    let buttons = [...squares];
+
+    for (let button of buttons) {
+      button.style.backgroundColor = '#f3f3f3';
+    }
   }
 
   getSettings = () => {
@@ -183,7 +214,7 @@ class Game extends React.Component {
             isPlaying={this.state.isPlaying}
             startPlaying={this.startPlaying}
             getTimerId={this.getTimerId}
-            squares={this.state.squares}
+            // squares={this.state.squares}
           />
 
           <span className="winner">
@@ -194,6 +225,7 @@ class Game extends React.Component {
             btnSettings={this.getSettings()} 
             getSquares={this.getSquares}
             squares={this.state.squares}
+            resetField={this.resetField}
           />
         </div>
         

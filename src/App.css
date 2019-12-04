@@ -40,7 +40,7 @@ ol, ul {
 .gameBoard {
   width: 600px;
   height: max-content;
-  margin-top: 50px;
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -49,14 +49,15 @@ ol, ul {
 
 .boardRow {
   width: max-content;
-  height: 40px;
+  height: 40px; 
 }
 
 .boardBtn {
   width: 40px;
   height: 40px;
-  border: 1px solid silver;
+  border: 1px solid rgb(87, 87, 87);
   cursor: pointer;
+  background-color: #f3f3f3;
 }
 
 .gameForm {
@@ -116,19 +117,22 @@ ol, ul {
   font-size: 14px;
   color: #ffffff;
   font-weight: bold;
+  display: none;
 }
 
 .winner {
   display: block;
   opacity: 0;
-  margin-top: 10px;
+  margin-top: 80px;
   transition: opacity 1s;
   font-size: 20px;
   color: #5f5f5f;
+  background-color: #e7e7e7;
+  padding: 5px;
 }
 
 .leadersTable {
-  margin-top: 140px;
+  margin-top: 150px;
   width: 35%;
 }
 
@@ -145,6 +149,11 @@ ol, ul {
 
 .negativeResult {
   background-color: rgb(221, 221, 221)
+}
+
+.ui.reset {
+  margin-top: 20px; 
+  display: none;
 }
 
 @media screen and (max-width: 585px) {
@@ -182,7 +191,7 @@ ol, ul {
   }
 
   .leadersTable {
-    width: 55%;
+    width: 50%;
     margin-top: 40px;
   }
 

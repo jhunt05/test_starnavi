@@ -10,7 +10,6 @@ function Panel(props) {
     userName,
     startPlaying,
     getTimerId,
-    squares
   } = props;
 
   const gameStart = (event) => {
@@ -21,15 +20,14 @@ function Panel(props) {
     const btn = document.querySelector('.ui.button');
     const select = document.querySelector('.select');
     const input = document.querySelector('.input');
+    const resetBtn = document.querySelector('.ui.reset');
 
     if (userName && gameMode !== "Pick game mode") {
       btn.disabled = 'true';
       select.disabled = 'true';
       input.disabled = 'true';
       winnerLabel.style.opacity = 0;
-      for (let square of squares) {
-        square.style.backgroundColor = '';
-      }
+      resetBtn.style.display = 'none';
     
       let timerId = setInterval(game, settings.delay);
       getTimerId(timerId);

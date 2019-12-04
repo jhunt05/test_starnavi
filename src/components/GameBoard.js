@@ -18,7 +18,7 @@ class GameBoard extends React.Component {
   }
 
   render() {
-    const {btnSettings} = this.props;
+    const {btnSettings, resetField} = this.props;
     let buttons = Array(btnSettings.field).fill(null);
 
     switch(btnSettings.field) {
@@ -40,6 +40,7 @@ class GameBoard extends React.Component {
             <div className="boardRow">
               {buttons.map((button, index) => <button key={index} className="boardBtn"></button>)}
             </div>
+            <button onClick={resetField} className="reset ui button">Reset field</button>
           </div>
         );
       case 10: 
@@ -75,6 +76,7 @@ class GameBoard extends React.Component {
             <div className="boardRow">
               {buttons.map((button, index) => <button key={index} className="boardBtn"></button>)}
             </div>
+            <button onClick={resetField} className="reset ui button">Reset field</button>
           </div>
         );
       case 15: 
@@ -125,6 +127,7 @@ class GameBoard extends React.Component {
             <div className="boardRow">
               {buttons.map((button, index) => <button key={index} className="boardBtn"></button>)}
             </div>
+            <button onClick={resetField} className="reset ui button">Reset field</button>
           </div>
         );
       default: 
