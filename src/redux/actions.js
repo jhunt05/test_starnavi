@@ -34,7 +34,7 @@ export function setUsername(name) {
 };
 
 export const fetchSettings = () => (dispatch, getState) => {
-  return fetch('http://starnavi-frontend-test-task.herokuapp.com/game-settings')
+  return fetch('https://starnavi-frontend-test-task.herokuapp.com/game-settings')
     .then(response => response.json())
     .then(responseJson => {
       dispatch(loadSettings(responseJson));
@@ -42,7 +42,7 @@ export const fetchSettings = () => (dispatch, getState) => {
 };
 
 export const fetchWinners = () => (dispatch, getState) => {
-  return fetch('http://starnavi-frontend-test-task.herokuapp.com/winners')
+  return fetch('https://starnavi-frontend-test-task.herokuapp.com/winners')
     .then(response => response.json())
     .then(responseJson => {
       dispatch(loadWinners(responseJson));

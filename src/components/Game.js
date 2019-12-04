@@ -39,7 +39,7 @@ class Game extends React.Component {
   }
 
   sendWinnerToServer = (userName) => {
-    return fetch('http://starnavi-frontend-test-task.herokuapp.com/winners', {
+    return fetch('https://starnavi-frontend-test-task.herokuapp.com/winners', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
